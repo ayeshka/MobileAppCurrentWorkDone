@@ -1,0 +1,92 @@
+<ion-header >
+  <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+          <ion-menu-button menu="m1"></ion-menu-button>
+        </ion-buttons>
+    <ion-title>current-salary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="warning">
+  
+    <ion-grid>
+
+        <ion-row text-center>
+            <ion-card>
+                <ion-item color="warning">
+                  <ion-icon color="dark" name="logo-usd" slot="start"></ion-icon>
+                  <ion-label color="dark">2019-6-1  to  2019-6-30</ion-label>
+                    <!--route to the salary datails page -->
+                   
+            
+                    <ion-label text-right color="dark" [routerLink]="['/salary/tabs/', 'Home', loadedSalary[0].id]" detail>
+                      view
+                    </ion-label>
+                  </ion-item>
+                
+              
+                <ion-card-content >
+                    <ion-label color="dark">Rs:</ion-label>
+                    <ion-title color="dark">{{loadedSalary[0].basicSalary}} /=</ion-title>
+                </ion-card-content>
+              </ion-card>
+              
+      
+       
+        </ion-row>
+       
+   
+       
+        <ion-row text-center>
+       
+            <ion-card>
+                <ion-card-header>
+            
+                  <ion-card-title>Today Events</ion-card-title>
+                </ion-card-header>
+              
+                <ion-card-content>
+<!--                    
+                    <ion-list class="list" *ngFor="let event of loadeEvent" >
+                        <ion-item color="dark"   class="activated" *ngIf="event.startTime.toDateString() == CurrentDate.toDateString()"> -->
+                            <!-- <ion-icon name="information-circle" slot="start"></ion-icon> -->
+                            <!-- <ion-label >{{event.desc}}</ion-label>
+                            <ion-label >{{  CurrentDate }}</ion-label> -->
+                            <!-- <ion-list  color="dark" *ngFor="let event of loadeEvent"> -->
+                              <div *ngIf="isLoading">
+                                  <ion-spinner color="dark"></ion-spinner>
+                              </div>
+                              <p *ngIf=" !isLoading " color="dark">
+                                Today is not spaciall events
+                              </p>
+                              <div *ngIf="!isLoading && loadeEvent.length > 0">
+                                <div  *ngFor="let event of loadeEvent">
+                                    <ion-item color="dark"  *ngIf="event.startTime.toDateString() == CurrentDate.toDateString()">
+                                        <ion-label>Event: {{event.desc}}</ion-label>
+                                      </ion-item>
+                                      <ion-item color="dark"  *ngIf="event.startTime.toDateString() == CurrentDate.toDateString()" >
+                                          <ion-label>Date:{{  CurrentDate.toDateString() }}</ion-label>
+                                        </ion-item>
+                                </div>
+                               
+                              </div>
+                             
+                            <!-- </ion-list> -->
+                           
+                          <!-- </ion-item>
+                    </ion-list>
+                        -->
+                   
+                       
+                    
+                </ion-card-content>
+              </ion-card>
+              
+       
+       
+        </ion-row>
+       
+       </ion-grid>
+   
+    
+</ion-content>

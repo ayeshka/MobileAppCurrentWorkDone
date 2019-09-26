@@ -1,0 +1,15 @@
+ion-grid {
+    height: 100%;
+  
+    ion-row {
+      height: 50%;
+    }
+    ion-card{
+        width: 100%;
+        ion-card-content {
+            ion-title{
+                font-size: 50px;
+            }
+        }
+    }
+  }

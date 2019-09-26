@@ -1,0 +1,84 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Auth</ion-title>
+    <div text-center>
+      <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
+  </div> 
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content padding color="warning"> 
+<ion-img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ionic-512.png"></ion-img>
+  <ion-grid>
+    <ion-row class="login">
+      <ion-col size="12">
+          <form #f="ngForm" (ngSubmit)=" onSubmit(f)" method="post"> 
+              <ion-grid>
+                  <ion-row>
+                    <ion-col size-sm="6" offset-sm="3">
+                        
+                            <ion-item color="warning" class="input">
+                              <ion-label position="floating" color="dark">
+                                Email:
+                              </ion-label>
+                              <ion-input 
+                              type="email"
+                              ngModel
+                              name="email"
+                              required
+                              #userCtrl="ngModel"
+                              color="dark"
+                              ></ion-input>
+                            
+                              
+                            </ion-item >
+                            <ion-item *ngIf="!userCtrl.valid && userCtrl.touched" lines="none" color="warning">
+                                
+                              <ion-label color="dark">
+                                Should be valid user name
+                              </ion-label>
+                            </ion-item>
+                            <ion-item color="warning" class="input">
+                              <ion-label position="floating" color="dark">Password</ion-label>
+                              <ion-input 
+                              type="password"
+                              ngModel
+                              name="password"
+                              required
+                              minlength="3"
+                              #passwordCtrl="ngModel"
+                              color="dark"
+                              ></ion-input>
+                            </ion-item>
+                            <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none" color="warning">
+                                
+                              <ion-label color="dark">
+                                Should be least be 6 characters long
+                              </ion-label>
+                            </ion-item>
+                          
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size-sm="6" offset-sm="3">
+                        <ion-button color="dark" type="submit" expand="block" [disabled]="!f.valid">
+                            Login
+                          </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+          </form>
+      </ion-col>
+  
+    </ion-row>
+  </ion-grid>
+ 
+     
+
+ 
+ 
+
+
+  
+
+</ion-content>

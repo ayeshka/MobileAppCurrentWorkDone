@@ -1,0 +1,31 @@
+ion-grid {
+    height: 100%;
+  
+    ion-row {
+      height: 50%;
+    }
+    ion-card{
+        width: 100%;
+    }
+}
+.speaker-detail  {
+  max-width: 140px;
+  border-radius: 50%;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.picker {
+width: 30rem;
+max-width: 80%;
+height: 20rem;
+max-height: 30vh;
+border: 1px solid var(--ion-color-dark);
+margin: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}

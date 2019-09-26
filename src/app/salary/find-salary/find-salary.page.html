@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Salary-List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="warning">
+
+    <ion-searchbar color="dark" showCancelButton="always"></ion-searchbar>
+    <div *ngIf="loadingSalary" text-center> 
+        <ion-spinner color="dark"></ion-spinner>
+    </div>
+    <p *ngIf="!loadingSalary" color="dark" text-center>There is no nay salary detaile</p>
+    <div *ngIf="!loadingSalary" >
+        <ion-list class="list" *ngFor="let salary of loadedSalary">
+            <ion-grid >
+                <ion-row>
+                  <ion-col size="12" size-sm="8" offset-sm="2" >
+              
+                <ion-item class="salary" color="dark"  [routerLink]="['/salary/tabs/', 'Home', salary.id]" detail>   <!--route to the salary datails page -->
+                  
+                  <ion-label>
+                    Your Salary:  Rs.{{ salary.basicSalary}} 
+                  </ion-label>
+                </ion-item>
+              
+              
+                  </ion-col>
+                </ion-row>
+               </ion-grid>
+              <!-- <ion-grid  >
+                  <ion-row >
+                    <ion-col size="12" size-sm="8" offset-sm="2" >
+                
+                  <ion-item class="salary">
+                    <ion-label text-center>
+                      <h1>{{ loadedSalary[1].basicSalary}}</h1>
+                    </ion-label>
+                  </ion-item>
+                
+                
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>  -->
+        </ion-list>
+    </div>
+ 
+
+</ion-content>

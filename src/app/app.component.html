@@ -1,0 +1,53 @@
+<ion-app>
+  <ion-menu slid="start" menuId="m1">
+      <ion-header>
+          <ion-toolbar color="dark">
+              <ion-item color="dark">
+                  <ion-avatar slot="start">
+                      <ion-img 
+                      [src]="getimage"
+                    ></ion-img>
+                  </ion-avatar>
+                  <ion-label>{{UserName}}</ion-label>
+                </ion-item>
+           
+          </ion-toolbar>
+        </ion-header>
+      
+        <ion-content color="warning">
+          
+         
+           <hr>
+            <ion-menu-toggle>
+              <ion-item lines="none" routerLink="/salary" color="warning">
+                  <ion-icon name="home" color="dark" slot="start"></ion-icon>
+                <ion-label color="dark">Home</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            
+            <ion-menu-toggle>
+              <ion-item lines="none" routerLink="/profile" color="warning">
+                  <ion-icon  name="person" color="dark" slot="start"></ion-icon>
+                <ion-label color="dark">Profile</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            
+            <ion-menu-toggle>
+              <ion-item lines="none" routerLink="/calender" color="warning">
+                <ion-icon name="calendar" color="dark" slot="start"></ion-icon>
+                <ion-label color="dark">Calendar</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item lines="none" (click)=" onLogout()" color="warning">
+                  <ion-icon name="power" color="dark" slot="start"></ion-icon>
+                <ion-label color="dark">Logout</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            
+          
+        </ion-content>
+    
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>
