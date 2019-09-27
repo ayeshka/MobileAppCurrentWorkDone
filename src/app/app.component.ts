@@ -29,17 +29,16 @@ export class AppComponent {
     private profileService: ProfileService,
     public events: Events
   ) {
+    this.initializeApp();
     events.subscribe('user', () => {
       this.Setimage();
     });
-    this.initializeApp();
+   
     
   }
 
   initializeApp() {
-    this.profileService.getimage().subscribe(data => {this.getimages = data
-    console.log(data) });
-  this.imageSub =   this.profileService.fatch().subscribe(data => this.UserName = data[3]  );
+
     this.platform.ready().then(() => {
         if (Capacitor.isPluginAvailable('SplashScreen')) {
           Plugins.SplashScreen.hide();
@@ -53,8 +52,10 @@ export class AppComponent {
   }
 
   Setimage() {
-    console.log("logged in");
-    this.profileService.getimage().subscribe(data => {this.getimages = data });
+ 
+    this.profileService.getimage().subscribe(data => {this.getimages = data
+    console.log(data) });
+  this.imageSub =   this.profileService.fatch().subscribe(data => this.UserName = data[3]  );
     }
 
   onLogout() {

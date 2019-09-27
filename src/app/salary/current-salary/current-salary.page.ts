@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { IonInfiniteScroll, NavController } from '@ionic/angular';
+import { IonInfiniteScroll, NavController, Events } from '@ionic/angular';
 import { Salary } from '../salary.modle';
 import { Subscription } from 'rxjs';
 import { SalaryService } from '../salary.service';
@@ -18,7 +18,13 @@ export class CurrentSalaryPage implements OnInit, OnDestroy {
   loadeEvent: Calender[];
   private calendarSub: Subscription;
   private salarySub: Subscription;
-  constructor(private slaryService: SalaryService, private navCtrl: NavController, private calenderService: CalenderService) { }
+  constructor(private slaryService: SalaryService, private navCtrl: NavController, private calenderService: CalenderService, public events: Events) { }
+
+  Setimage() {
+
+    this.events.publish('user');
+
+    }
 
   ngOnInit() {
     this.salarySub =  this.slaryService.salary.subscribe(salary => {
@@ -34,6 +40,7 @@ console.log( new Date().toDateString());
 
     ionViewWillEnter() {
       this.isLoading = true;
+      this.Setimage();
       this.calenderService.fatch().subscribe(() => {
         this.isLoading = false;
       });
