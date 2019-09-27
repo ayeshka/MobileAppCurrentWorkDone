@@ -9,29 +9,31 @@
 
 <ion-content padding color="warning">
 
-    <ion-searchbar color="dark" showCancelButton="always"></ion-searchbar>
-    <div *ngIf="loadingSalary" text-center> 
+    <ion-searchbar type="text" debounce="500" (ionInput)=" getItems($event)" color="dark" cancelButtonText="Custom Cancel"></ion-searchbar> 
+    <!-- <div *ngIf="loadingSalary" text-center> 
         <ion-spinner color="dark"></ion-spinner>
-    </div>
-    <p *ngIf="!loadingSalary" color="dark" text-center>There is no nay salary detaile</p>
-    <div *ngIf="!loadingSalary" >
+    </div> -->
+    <!-- <p *ngIf="!loadingSalary" color="dark" text-center>There is no nay salary detaile</p> -->
+    <div *ngIf="loadingSalary" >
         <ion-list class="list" *ngFor="let salary of loadedSalary">
-            <ion-grid >
+             <ion-grid >
                 <ion-row>
                   <ion-col size="12" size-sm="8" offset-sm="2" >
               
-                <ion-item class="salary" color="dark"  [routerLink]="['/salary/tabs/', 'Home', salary.id]" detail>   <!--route to the salary datails page -->
+                <ion-item class="salary" color="dark"  [routerLink]="['/salary/tabs/', 'Home', salary.id]" detail>  
                   
-                  <ion-label>
+                 
+                   <ion-label>
                     Your Salary:  Rs.{{ salary.basicSalary}} 
-                  </ion-label>
+                  </ion-label> 
+
                 </ion-item>
               
               
                   </ion-col>
                 </ion-row>
-               </ion-grid>
-              <!-- <ion-grid  >
+               </ion-grid> 
+               <!-- <ion-grid  >
                   <ion-row >
                     <ion-col size="12" size-sm="8" offset-sm="2" >
                 
@@ -44,7 +46,8 @@
                 
                     </ion-col>
                   </ion-row>
-                </ion-grid>  -->
+                </ion-grid>   -->
+               
         </ion-list>
     </div>
  
