@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Events } from '@ionic/angular';
 
 
 interface Userdetails {
@@ -30,8 +31,13 @@ export class ProfileService {
   private _userDetails = new BehaviorSubject<UserDetails[]>([]);
 
 
-  constructor(private http: HttpClient, private storage: NativeStorage) { }
+  constructor(private http: HttpClient, private storage: NativeStorage, public events: Events) { }
 
+  Setimage() {
+
+    this.events.publish('user');
+
+    }
 
   get UserDetails() {
     return this._userDetails.asObservable();
@@ -83,9 +89,12 @@ export class ProfileService {
     console.log(image);
     return this.http.post<any>('http://localhost:8000/api/user/update_image', JSON.stringify({
    'avatar': image
-    }), httpOptions).pipe().subscribe(error => console.log(error) );
+    }), httpOptions).pipe().subscribe(error => { 
+      console.log(error);
+      this.Setimage();
+    } );
     
-
+   
   }
 
   getimage() {

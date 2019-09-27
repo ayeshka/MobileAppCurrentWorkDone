@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '
 import { ProfileService } from './profile.service';
 import { UserDetails } from './profile.model';
 import { Subscription } from 'rxjs';
-import { Platform } from '@ionic/angular';
+import { Platform, Events, LoadingController } from '@ionic/angular';
 import { Capacitor, Plugins, CameraSource, CameraResultType } from '@capacitor/core';
 
 
@@ -43,7 +43,14 @@ export class ProfilePage implements OnInit {
   imageSub: Subscription;
   userDetails: UserDetails[];
   userSub: Subscription;
-  constructor(private profileService: ProfileService, private platform: Platform) { }
+  constructor(private profileService: ProfileService, private platform: Platform, public events: Events, public loadingController: LoadingController) { }
+
+
+  Setimage() {
+
+    this.events.publish('user');
+
+    }
 
   ngOnInit() {
 
@@ -67,8 +74,22 @@ export class ProfilePage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.profileService.getimage().subscribe(data => this.selectedImage = data);
-    this.profileService.fatch().subscribe();
+
+    this.loadingController.create({  message: 'Lodding...'})
+    .then(loadingEl => {
+      loadingEl.present();
+      setTimeout(() => {
+        this.profileService.getimage().subscribe(data => this.selectedImage = data);
+        this.profileService.fatch().subscribe();
+        loadingEl.dismiss();
+       // this.dismissLogin();
+        
+       
+        
+      }, 1500);
+    });
+   
+    //this.imagePick.emit(this.selectedImage);
   }
 
 //  onImagePicked(imageData: string ) {
@@ -112,8 +133,22 @@ export class ProfilePage implements OnInit {
          //this.selectedImage = image.base64String;
          this.selectedImage = 'data:image/jpeg;base64,' + image.base64String;  // Base64 string
          console.log(this.selectedImage);
-         this.profileService.imageUplode(this.selectedImage);
-        // this.imagePick.emit('data:image/jpeg;base64,' + image.base64String);
+         
+         //this.imagePick.emit('data:image/jpeg;base64,' + image.base64String);
+         this.loadingController.create({  message: 'Lodding...'})
+    .then(loadingEl => {
+      loadingEl.present();
+      setTimeout(() => {
+        this.profileService.imageUplode('data:image/jpeg;base64,' + image.base64String );  // upload image
+       // this.Setimage();
+        loadingEl.dismiss();
+       // this.dismissLogin();
+        
+       
+        
+      }, 1500);
+    });
+       
         // this.imagePick.emit(image.base64String);
         // console.log(this.selectedImage);
       })
@@ -125,6 +160,8 @@ export class ProfilePage implements OnInit {
         return false;
       });
   }
+
+  
 
   onFileChosen(event: Event){
     //console.log(event);
@@ -138,10 +175,25 @@ export class ProfilePage implements OnInit {
       const dataUrl = fr.result.toString();
       //console.log("datau: "+ dataUrl);
       this.selectedImage = dataUrl;
-      this.profileService.imageUplode(this.selectedImage);
-     // this.imagePick.emit(this.selectedImage);
+     
+      this.loadingController.create({  message: 'Lodding...'})
+      .then(loadingEl => {
+        loadingEl.present();
+        setTimeout(() => {
+          this.profileService.imageUplode(dataUrl);  // upload image
+        //  this.Setimage();
+          loadingEl.dismiss();
+         // this.dismissLogin();
+          
+         
+          
+        }, 1500);
+      });
+      
+      //this.imagePick.emit(this.selectedImage);
       //console.log(pickedFile);
     }
+ 
     fr.readAsDataURL(pickedFile);
       }
 

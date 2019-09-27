@@ -99,10 +99,11 @@ this.authService.login(email, password).subscribe(
         loadingEl.present();
         setTimeout(() => {
           this.isLoading = false;
-          loadingEl.dismiss();
+          
          // this.dismissLogin();
          localStorage.setItem('token', data.access_token);
           this.navCtrl.navigateRoot('/salary');
+          loadingEl.dismiss();
         }, 1500);
       });
    

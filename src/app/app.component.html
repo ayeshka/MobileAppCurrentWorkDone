@@ -4,11 +4,11 @@
           <ion-toolbar color="dark">
               <ion-item color="dark">
                   <ion-avatar slot="start">
-                      <ion-img 
-                      [src]="getimage"
+                      <ion-img (imagePick)="getimage($event)"
+                      [src]="getimages"
                     ></ion-img>
                   </ion-avatar>
-                  <ion-label>{{UserName}}</ion-label>
+                  <ion-label >{{UserName}}</ion-label>
                 </ion-item>
            
           </ion-toolbar>

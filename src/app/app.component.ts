@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform,Events } from '@ionic/angular';
 // import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 // import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -10,13 +10,14 @@ import { from, Subscription } from 'rxjs';
 import { ProfileService } from './profile/profile.service';
 import { UserDetails } from './profile/profile.model';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
 
-  getimage: string;
+  getimages: string;
   UserName: string;
   imageSub: Subscription;
   constructor(
@@ -25,14 +26,19 @@ export class AppComponent {
     // private statusBar: StatusBar,
     private router: Router,
     private authServe: AuthService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    public events: Events
   ) {
+    events.subscribe('user', () => {
+      this.Setimage();
+    });
     this.initializeApp();
     
   }
 
   initializeApp() {
-    this.profileService.getimage().subscribe(data => this.getimage = data );
+    this.profileService.getimage().subscribe(data => {this.getimages = data
+    console.log(data) });
   this.imageSub =   this.profileService.fatch().subscribe(data => this.UserName = data[3]  );
     this.platform.ready().then(() => {
         if (Capacitor.isPluginAvailable('SplashScreen')) {
@@ -40,6 +46,16 @@ export class AppComponent {
         }
     });
   }
+
+  getimage(image: string){
+   console.log(image);
+  
+  }
+
+  Setimage() {
+    console.log("logged in");
+    this.profileService.getimage().subscribe(data => {this.getimages = data });
+    }
 
   onLogout() {
     this.authServe.logout();
