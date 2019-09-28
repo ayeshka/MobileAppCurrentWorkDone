@@ -9,17 +9,17 @@
 
 <ion-content color="warning">
   
-    <ion-grid>
+    <!-- <ion-grid>
 
         <ion-row text-center>
             <ion-card>
                 <ion-item color="warning">
                   <ion-icon color="dark" name="logo-usd" slot="start"></ion-icon>
-                  <ion-label color="dark">2019-6-1  to  2019-6-30</ion-label>
+                  <ion-label color="dark">2019-6-1  to  2019-6-30</ion-label> -->
                     <!--route to the salary datails page -->
                    
             
-                    <ion-label text-right color="dark" [routerLink]="['/salary/tabs/', 'Home', loadedSalary[0].id]" detail>
+                    <!-- <ion-label text-right color="dark" [routerLink]="['/salary/tabs/', 'Home', loadedSalary[0].id]" detail>
                       view
                     </ion-label>
                   </ion-item>
@@ -45,7 +45,7 @@
                   <ion-card-title>Today Events</ion-card-title>
                 </ion-card-header>
               
-                <ion-card-content>
+                <ion-card-content> -->
 <!--                    
                     <ion-list class="list" *ngFor="let event of loadeEvent" >
                         <ion-item color="dark"   class="activated" *ngIf="event.startTime.toDateString() == CurrentDate.toDateString()"> -->
@@ -53,6 +53,8 @@
                             <!-- <ion-label >{{event.desc}}</ion-label>
                             <ion-label >{{  CurrentDate }}</ion-label> -->
                             <!-- <ion-list  color="dark" *ngFor="let event of loadeEvent"> -->
+
+<!--                               
                               <div *ngIf="isLoading">
                                   <ion-spinner color="dark"></ion-spinner>
                               </div>
@@ -71,11 +73,7 @@
                                
                               </div>
                              
-                            <!-- </ion-list> -->
-                           
-                          <!-- </ion-item>
-                    </ion-list>
-                        -->
+                    
                    
                        
                     
@@ -86,7 +84,69 @@
        
         </ion-row>
        
-       </ion-grid>
+       </ion-grid> -->
    
+
+<!--        
+         <ion-card>
+            <ion-slides [options]=" slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" >
+                <ion-slide *ngFor="let image of imageArry">
+                    <img class="image" src="{{image.image}}" >
+                </ion-slide>
+              
+              </ion-slides>
+              
+            
+         </ion-card>
+           
+        
+         <div class="collum">
+           <ion-title class="font" text-center>Last Mount Salary</ion-title>
+            <ion-text class="text">2000</ion-text>
+         </div> -->
+        
+        <!-- <ion-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdo_KzGq82ZROrvz9gRDB1zJuo_NY-MKuerrePxXdG5adMF39xoQ"></ion-img> -->
+      
+
+  <!-- <ion-grid>
+    <ion-row >
+    
+          <ion-slides [options]=" slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" >
+              <ion-slide *ngFor="let image of imageArry">
+                  <img class="image" src="{{image.image}}" >
+              </ion-slide>
+            
+            </ion-slides>
+      
+       
+    </ion-row>
+    <ion-row >
+ 
+        <ion-col align-self-start>
+            ion-col [start]
+          </ion-col>
+          <ion-col align-self-end>
+              ion-col [end]
+            </ion-col>
+    </ion-row>
+  </ion-grid> -->
+<div class="first">
+<div class="second">
+    <ion-slides [options]=" slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" >
+        <ion-slide *ngFor="let image of imageArry">
+            <img class="image" src="{{image.image}}" >
+        </ion-slide>
+      
+      </ion-slides>
+</div>
+<div class="therd">
+<ion-grid>
+  <ion-row><ion-title>Current Salary</ion-title></ion-row>
+  <ion-row><ion-title>{{loadedSalary[0].basicSalary}} /=</ion-title></ion-row>
+  
+  <ion-row><ion-title><ion-button expand="block" [routerLink]="['/salary/tabs/', 'Home', loadedSalary[0].id]">More Details</ion-button></ion-title></ion-row>
+</ion-grid>
+</div>
+</div>
     
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { IonInfiniteScroll, NavController, Events } from '@ionic/angular';
+import { IonInfiniteScroll, NavController, Events,  IonSlides  } from '@ionic/angular';
 import { Salary } from '../salary.modle';
 import { Subscription } from 'rxjs';
 import { SalaryService } from '../salary.service';
@@ -13,12 +13,31 @@ import { Calender } from 'src/app/calender/calender.model';
 })
 export class CurrentSalaryPage implements OnInit, OnDestroy {
   CurrentDate = new Date();
+  imageArry: any = [];
  isLoading = false;
   loadedSalary: Salary[];
   loadeEvent: Calender[];
   private calendarSub: Subscription;
   private salarySub: Subscription;
-  constructor(private slaryService: SalaryService, private navCtrl: NavController, private calenderService: CalenderService, public events: Events) { }
+  constructor(private slaryService: SalaryService, private navCtrl: NavController, private calenderService: CalenderService, public events: Events) {
+
+    this.imageArry = [
+      {'image':'./assets/image/alexander-mils-lCPhGxs7pww-unsplash.jpg'},
+      {'image':'./assets/image/neonbrand-mVSZWa6JwDE-unsplash.jpg'},
+      {'image':'../assets/image/sharon-mccutcheon-8lnbXtxFGZw-unsplash.jpg'},
+    ]
+   }
+
+
+   slideOptions = {
+    initialSlide: 1,
+    speed: 3000,
+  };
+
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
+  }
+
 
   Setimage() {
 
